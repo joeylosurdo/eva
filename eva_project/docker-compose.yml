@@ -1,1 +1,11 @@
-# Dummy content for docker-compose.yml
+version: '3.9'
+
+services:
+  eva-backend:
+    build: .
+    container_name: eva_backend
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    command: python scripts/bootstrap_index.py# Dummy content for docker-compose.yml
