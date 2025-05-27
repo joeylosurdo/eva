@@ -1,0 +1,13 @@
+# Ignore secret files
+.env
+credentials.json
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore SQLite DB (used for feedback tracking)
+*.db
+
+# Ignore VS Code local settings (optional)
+.vscode/
