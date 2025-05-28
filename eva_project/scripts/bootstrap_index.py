@@ -1,11 +1,11 @@
-# 📁 eva/scripts/bootstrap_index.py
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from backend.ingest.drive_ingest import list_drive_files, download_file
 from backend.ingest.extract_text import extract_text_from_file
 from backend.ingest.chunker import chunk_text
 from backend.ingest.embedder import upsert_chunks
-import os
-import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def run_index():
     files = list_drive_files()
@@ -21,6 +21,7 @@ def run_index():
         metadata = {"document_title": name, "document_type": ext.lstrip("."), "source": "GDrive"}
         upsert_chunks(chunks, metadata)
         os.remove(name)
+
 
 if __name__ == "__main__":
     run_index()# Dummy content for bootstrap_index.py

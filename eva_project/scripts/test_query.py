@@ -1,4 +1,7 @@
 # 📁 eva/scripts/test_query.py
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from backend.query import search_index, summarize_with_gpt
 
 if __name__ == "__main__":

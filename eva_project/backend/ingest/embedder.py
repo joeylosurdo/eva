@@ -1,16 +1,19 @@
-# 📁 eva/backend/ingest/embedder.py
 import openai
 import pinecone
 from uuid import uuid4
 from backend.config import OPENAI_API_KEY, PINECONE_API_KEY, PINECONE_ENV, PINECONE_INDEX
+from openai import OpenAI
+from pinecone import Pinecone
+
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 openai.api_key = OPENAI_API_KEY
-pinecone.init(api_key=PINECONE_API_KEY, environment=PINECONE_ENV)
-index = pinecone.Index(PINECONE_INDEX)
+pc = Pinecone(api_key=PINECONE_API_KEY)
+index = pc.Index(PINECONE_INDEX)
 
 def embed_text(text):
-    response = openai.Embedding.create(input=text, model="text-embedding-3-large")
-    return response["data"][0]["embedding"]
+    response = client.embeddings.create(input=text, model="text-embedding-3-large")
+    return response.data[0].embedding
 
 def upsert_chunks(chunks, metadata):
     for i, chunk in enumerate(chunks):

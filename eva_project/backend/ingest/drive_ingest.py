@@ -25,4 +25,4 @@ def download_file(file_id, filename):
         _, done = downloader.next_chunk()
     fh.seek(0)
     with open(filename, 'wb') as f:
-        f.write(fh.read())# Dummy content for drive_ingest.py
+        f.write(fh.read())
